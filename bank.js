@@ -19,40 +19,84 @@ class Bank{
                   return accountDetails
                }
 
+            static authenticateUser=(uname,pwd)=>{
+               let dataset=Bank.getData()
+
+               if(uname in dataset){
+                    if(dataset[uname].password==pwd){
+                        
+                       return 1;//valid user name and password
+
+                    }
+                    else{
+                        
+                         return 0;//inavlid password
+                    }
+                
+               }
+               else{
+                   return -1;//no user exsist
+
+               }
+     
+
+
+            }   
+
        static login=()=>{
 
          
 
        let uname=document.querySelector("#username").value
        let pwd=document.querySelector("#password").value
-       let dataset=Bank.getData()
 
-     //           
-     //      var accountDetails={
-     //      userone:{accno:1000,name:"ajay",bal:10000,username:"userone",password:"test"},
-     //      usertwo:{accno:1001,name:"sajay",bal:20000,username:"usertwo",password:"test1"},
-     //      userthree:{accno:1002,name:"vijay",bal:30000,username:"userthree",password:"test2"}
-     //                          }
+       let us=Bank.authenticateUser(uname,pwd)
+       if (us==1){
+ 
 
+          alert("login successfull")
+          window.location.href="userhome.html"
+       
+       }
+       else if(us==0){
+         let plab=document.querySelector("#pinvalid")
+         plab.textContent="password doesnt match the username"
+         plab.style.color="red"
+         //alert("password is incorrect")
+         
+
+       }
+       else if(us==-1){
+         let ulab=document.querySelector("#uinvalid")
+         ulab.textContent="username is incorrect"
+         ulab.style.color="red"
+          //alert("no user exsist with provided username")
+
+       }
+
+      }
+      // let dataset=Bank.getData()
+
+     
           //check uname present inside the dataset
-          if(uname in dataset){
-               if(dataset[uname].password==pwd){
-                    alert("login successfull")
-                    //........................
-                    window.location.href="userhome.html"
-                    //.....................
-               }
-               else{
-                    alert("password is incorrect")
-               }
+          // if(uname in dataset){
+          //      if(dataset[uname].password==pwd){
+          //           alert("login successfull")
+          //           //........................
+          //           window.location.href="userhome.html"
+          //           //.....................
+          //      }
+          //      else{
+          //           alert("password is incorrect")
+          //      }
            
-          }
-          else{
-               alert("no user exsist with provided username")
-          }
+          // }
+          // else{
+          //      alert("no user exsist with provided username")
+          // }
 
 
-                   }
+                   
 
 
 
@@ -63,22 +107,43 @@ class Bank{
           let amt=Number(document.querySelector("#amt").value)
           let dataset=Bank.getData()
 
-          if(uname in dataset){
-               if(dataset[uname].password==pwd){
 
-                  dataset[uname].bal+=amt;
-                  alert("your account credited with the amount"+amt+"available balance ="+dataset[uname].bal)
+          let us=Bank.authenticateUser(uname,pwd)
+         if (us==1){
+ 
+          dataset[uname].bal+=amt;
+          alert("your account credited with the amount"+amt+"available balance ="+dataset[uname].bal)
+
+       
+       }
+       else if(us==0){
+          alert("password is incorrect")
+
+       }
+       else if(us==-1){
+          alert("no user exsist with provided username")
+
+       }
+
+      }
+          // let dataset=Bank.getData()
+
+          // if(uname in dataset){
+          //      if(dataset[uname].password==pwd){
+
+          //         dataset[uname].bal+=amt;
+          //         alert("your account credited with the amount"+amt+"available balance ="+dataset[uname].bal)
 
                    
-               }
-               else{
-                    alert("password is incorrect")
-               }
+          //      }
+          //      else{
+          //           alert("password is incorrect")
+          //      }
            
-          }
-          else{
-               alert("no user exsist with provided username")
-          }
+          // }
+          // else{
+          //      alert("no user exsist with provided username")
+          // }
 
 
 
@@ -87,7 +152,7 @@ class Bank{
 
 
 
-         }    
+         
          
          static Withdrawal=()=>{
 
@@ -97,39 +162,60 @@ class Bank{
           let amt=Number(document.querySelector("#amt").value)
           let dataset=Bank.getData()
 
-          if(uname in dataset){
-               if(dataset[uname].password==pwd)
-               {
-                        if(dataset[uname].bal>=amt){
 
-                         dataset[uname].bal-=amt;
+          let us=Bank.authenticateUser(uname,pwd)
+          if (us==1){
+            
+                      if(dataset[uname].bal>=amt)
+                      {
 
-                          alert("your account debited with the amount"+amt+"available balance ="+dataset[uname].bal)
+                     dataset[uname].bal-=amt;
+                     alert("your account debited with the amount"+amt+"available balance ="+dataset[uname].bal)
 
-                         }
-                         else{
-                              alert("insufficient balance")
-                         }
-                  
-                   
-               }
-               else{
-                    alert("password is incorrect")
-               }
-           
+                    }
+            
+          
           }
-          else{
-               alert("no user exsist with provided username")
+          else if(us==0){
+             alert("password is incorrect")
+   
           }
-
-
-
+          else if(us==-1){
+             alert("no user exsist with provided username")
+   
+          }
          }
 
+      }
 
-  }
+         //  if(uname in dataset){
+         //       if(dataset[uname].password==pwd)
+         //       {
+         //                if(dataset[uname].bal>=amt){
+
+         //                 dataset[uname].bal-=amt;
+
+         //                  alert("your account debited with the amount"+amt+"available balance ="+dataset[uname].bal)
+
+         //                 }
+         //                 else{
+         //                      alert("insufficient balance")
+         //                 }
+                  
+                   
+         //       }
+         //       else{
+         //            alert("password is incorrect")
+         //       }
+           
+         //  }
+         //  else{
+         //       alert("no user exsist with provided username")
+         //  }
 
 
+
+         // }
 
 
   
@@ -137,15 +223,7 @@ class Bank{
 
 
 
-
-
-
-
-
-
-
-
-
+  
 
 
 
