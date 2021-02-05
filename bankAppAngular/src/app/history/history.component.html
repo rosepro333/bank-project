@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <td>amount</td>
+        <td>type of transaction</td>
+    </tr>
+    
+    <tr *ngFor="let item of history">
+        <td>{{item.amount}}</td>
+        <td>{{item.transactionType}}</td>
+
+
+    </tr>
+
+</table>

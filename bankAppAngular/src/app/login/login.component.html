@@ -1,0 +1,49 @@
+<div class=background-image>
+ <p>login works!</p>
+
+  <div class="container">
+    <div class="main">
+         <div class="row">
+            <div class="col"></div>
+            <div class="col"><h1>Login SBI BANK</h1></div>
+            <div class="col"></div>
+         </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" >
+
+     <div class="mb-3">
+           <label for="exampleInputEmail1" style="color:white;" class="form-label">username <span class="required">*</span> </label>
+           <!-- <input (change)="onUsernameChange($event)" type="text" class="form-control" id="username" aria-describedby="emailHelp"> -->
+           <input  formControlName="username" type="text" name="username" class="form-control"  aria-describedby="emailHelp">
+           <label for="" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors?.required" style="color: red;" id="uinvalid" class="form-text"> username is required</label>
+     </div>
+     <div class="mb-3">
+          <label for="exampleInputPassword1"  style="color:white;" class="form-label">Password <span class="required">*</span></label>
+          <!-- <input (change)="onPasswordChange($event)" type="password" class="form-control" id="password"> -->
+          <input formControlName="password"  type="password" name="password" class="form-control">
+          
+          <div *ngIf=" loginForm.get('password')?.touched && loginForm.get('password')?.errors">
+
+            <label for="" *ngIf="loginForm.get('password')?.errors?.required" style="color: red;"  id="pinvalid" class="form-text"> password is required</label>
+             <label for="" *ngIf="loginForm.get('password')?.errors?.pattern" style="color: red;"  id="pinvalid" class="form-text">password must be 
+               atleast 8 characters,(atleast, one lowercase,one upppercase,one speical char,one digit</label> 
+         
+           <!-- <label for="" *ngIf="loginForm.get('password')?.errors?.minlength" style="color: red;"  id="pinvalid" class="form-text">password must be 
+               atleast 8 characters</label> --> 
+
+          </div>
+          
+          
+     </div>
+  
+      <button type="submit"  class="btn btn-primary">Login</button>
+
+   </form>
+
+    </div>
+
+ </div>
+
+
+ 
+</div>
+  

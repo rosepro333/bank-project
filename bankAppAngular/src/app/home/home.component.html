@@ -1,0 +1,40 @@
+<div class="background-image">
+
+<a routerLink="/history">History</a>
+<h1>WELCOME TO SBI BANK</h1>
+    <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <form [formGroup]="homeForm">
+              
+                  <label for="">username</label>
+                  <input  formControlName="username" type="text" name="username" id="uname" class="form-control">
+              
+
+                <label for="">password</label>
+                <!-- <input  (change)="onPasswordChange($event)" type="password" id="pwd" class="form-control"> -->
+                <input  formControlName="password" type="password" name="password" id="pwd" class="form-control">
+              
+
+                <label for="">amount</label>
+                <input  formControlName="amount" type="number" name="amount" id="amt" class="form-control"><br>
+              
+    
+    
+              <button type="button"  (click)="Deposit()" class="btn btn-primary">Deposit</button>
+              <button type="button"   (click)="Withdrawal()"  class="btn btn-primary">Withdrawal</button>
+
+            </form>
+
+            </div>
+          <div class="col-4">
+
+          </div>
+
+
+        </div>
+
+
+
+    </div>
+  </div>
