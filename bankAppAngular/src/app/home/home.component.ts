@@ -49,24 +49,38 @@ export class HomeComponent  {
 
 Deposit(){
   //alert("deposit success")
-  const username=this.homeForm.value.username;
-  const password=this.homeForm.value.password;
+ // const username=this.homeForm.value.username;
+  //const password=this.homeForm.value.password;
   const amount=parseInt(this.homeForm.value.amount);
 
-this.bankService.Deposit(username,password,amount);
-//this.router.navigateByUrl("/history");
+  this.bankService.Deposit(amount)
+  .subscribe((data:any)=>{
+
+    alert(data.message);
+    console.log(data);
+    //this.router.navigateByUrl("/history");
+
+     })
+
 
 
 }
 Withdrawal(){
 
-  const username=this.homeForm.value.username;
-  const password=this.homeForm.value.password;
+ // const username=this.homeForm.value.username;
+ // const password=this.homeForm.value.password;
   const amount=parseInt(this.homeForm.value.amount);
   
   //alert("deposit success")
-this.bankService.Withdrawal(username,password,amount);
-//this.router.navigateByUrl("/history");
+this.bankService.Withdrawal(amount)
+
+  .subscribe((data:any)=>{
+
+    alert(data.message);
+    console.log(data);
+  //this.router.navigateByUrl("/history");
+
+  })
 
 
 }

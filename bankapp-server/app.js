@@ -1,13 +1,22 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const cors=require('cors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const mongoose=require('mongoose');
 
 var app = express();
+mongoose.connect('mongodb://localhost:27017/bank-app',{useNewUrlParser:true,useUnifiedTopology:true});
+
+app.use(cors({
+  origin:'http://localhost:4200'
+
+})
+)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -7,7 +7,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
+import { UsereditComponent } from './useredit/useredit.component';
 
 
 @NgModule({
@@ -15,12 +19,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    HistoryComponent
+    HistoryComponent,
+    ProfileComponent,
+    UsersComponent,
+    UsereditComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],

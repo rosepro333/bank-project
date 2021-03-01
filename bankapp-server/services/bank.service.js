@@ -1,114 +1,199 @@
+const User = require('../models/user');
 
-let accountDetails = {
-    userone:{accno:1000,name:"ajay",bal:10000,username:"userone",password:"Test111*",history:[]},
-    usertwo:{accno:1001,name:"sajay",bal:20000,username:"usertwo",password:"test222",history:[]},
-    userthree:{accno:1002,name:"vijay",bal:30000,username:"userthree",password:"test333",history:[]}
+// let accountDetails = {
+//     userone:{accno:1000,name:"ajay",bal:10000,username:"userone",password:"Test111*",history:[]},
+//     usertwo:{accno:1001,name:"sajay",bal:20000,username:"usertwo",password:"test222",history:[]},
+//     userthree:{accno:1002,name:"vijay",bal:30000,username:"userthree",password:"test333",history:[]}
 
-                     };
+//                      };
 
     const authenticateUser=(uname,pwd)=>{
-        let dataset=accountDetails;
+     return User.findOne(
+        {
+        username: uname,
+        password:pwd
+        }
+      );
+        // let dataset=accountDetails;
                         
-            if(uname in dataset){
-            if(dataset[uname].password==pwd){
+        //     if(uname in dataset){
+        //     if(dataset[uname].password==pwd){
                                     
-                    return 1;//valid user name and password
+        //             return 1;//valid user name and password
                         
-                    }
-            else{
+        //             }
+        //     else{
                                     
-                    return 0;//inavlid password
-                }
+        //             return 0;//inavlid password
+        //         }
                             
-            }
-        else{
-                return -1;//no user exsist
+        //     }
+        // else{
+        //         return -1;//no user exsist
                         
-                }
+        //         }
                         
                         
                         
         }   
 
 //deposit
+const Deposit=(_id,amt)=>{
 
-const Deposit=(uname,pwd,amt)=>{
-    let user=authenticateUser(uname,pwd);
+  //let user=authenticateUser(uname,pwd);
 
     //let dataset=this.accountDetails;
      //alert("bank deposit success")
 
-     if (user==1){
+  // if (user==1){
+    return User.findById(
+                    _id
+                    //username:uname
+              )
+      .then(user=>{
+                   user.bal+=amt;
+                   user.history.push({
 
-      //to avoid the issue of amount appending we use parseInt()....parseInt(amt)
-       accountDetails[uname].bal+=amt;
-       accountDetails[uname].history.push({
+                      amount:amt,
+                      transactionType:"credit"
+                    })
+                    user.save();
 
-          amount:amt,
-          transactionType:"credit"
-       });
+                    return {
+                      balance:user.bal,
+                      message:"your account credited with the amount"+amt+"available balance ="+user.bal
+                      };
+          
 
-       return {
-         balance:accountDetails[uname].bal,
-         message:"your account credited with the amount"+amt+"available balance ="+accountDetails[uname].bal
-      }
+      });
+     
+            
+            //         accountDetails[uname].bal+=amt;
+            //           accountDetails[uname].history.push({
 
-    
+            //             amount:amt,
+            //             transactionType:"credit"
+            //           });
+
+            //   return {
+            //     balance:accountDetails[uname].bal,
+            //     message:"your account credited with the amount"+amt+"available balance ="+accountDetails[uname].bal
+            // };
+            
+   // }
+    //else {
+     //  return {message:"invalid details"}
+    //}
+
     }
-    else {
-       return {message:"invalid details"}
-    }
 
- }
+
+
 //withdraw
 
-const  Withdrawal=(uname,pwd,amt)=>{
-   let user=authenticateUser(uname,pwd)
+const  Withdrawal=(_id,amt)=>{
+  // let user=authenticateUser(uname,pwd)
    
-   if (user==1){
-      console.log(accountDetails[uname].bal)
+  return User.findById(
+    _id
+    //username:uname
+     )
+  .then(user=>{
+        if(user.bal<amt){
+                         return {message:"insufficient balance"}
+                        }
 
-    if(accountDetails[uname].bal<amt){
-       return {message:"insufficient balance"}
-    }
-     
-  else
-      {
-        accountDetails[uname].bal-=amt;
-        accountDetails[uname].history.push
-        ({
-          amount:amt,
-          transactionType:"debit"
-       });
 
+        else{
+              user.bal-=amt;
+              user.history.push
+                 ({
+                    amount:amt,
+                    transactionType:"debit"
+                 });
+            }    
+      user.save();
       return{
-         balance:accountDetails[uname].bal,
-         message: "your account debited with the amount"+amt+"available balance ="+accountDetails[uname].bal
-           }
-      }
+              balance:user.bal,
+              message: "your account debited with the amount"+amt+"available balance ="+user.bal
+            };
+       
+  
+
+    });
+
+
+
+ //  if (user==1){
+  //     console.log(accountDetails[uname].bal)
+
+  //   if(accountDetails[uname].bal<amt){
+  //      return {message:"insufficient balance"}
+  //   }
+     
+  // else
+  //     {
+  //       accountDetails[uname].bal-=amt;
+  //       accountDetails[uname].history.push
+  //       ({
+  //         amount:amt,
+  //         transactionType:"debit"
+  //      });
+
+  //     return{
+  //        balance:accountDetails[uname].bal,
+  //        message: "your account debited with the amount"+amt+"available balance ="+accountDetails[uname].bal
+  //          }
+  //     }
    
-   }
-   else {
-      return{message:"invalid details"}
-   }
- }
- //history
- const getHistory=(uname,pwd)=>
- {
-   let user=authenticateUser(uname,pwd);
-   if (user==1){
-
-      return accountDetails[uname].history
-   }
-
-   else{
-      return[];
-
-   }
    
+  // else {
+   //   return{message:"invalid details"}
+  // }
 }
 
+ //history....................................................
+ const getUser=(_id)=>
+ {
 
+
+  return User.findById(
+       _id
+    //username:uname
+  );
+
+   //let user=authenticateUser(uname);
+  // if (user==1){
+
+         //return accountDetails[uname].history
+   //}
+
+  // else{
+    //  return[];
+
+  // }
+   
+}
+//........................
+const updateUser=function(_id,data)
+{
+  return User.findOneAndUpdate({_id},data);
+
+}
+//..........................
+
+const getUsers=function()
+{
+  
+  return User.find();
+}
+//delete...........
+const deleteUser=function(_id){
+ return User.deleteOne({
+   _id
+ })
+
+}
 
    //export 
    
@@ -117,7 +202,10 @@ const  Withdrawal=(uname,pwd,amt)=>{
     authenticateUser,
     Deposit,
     Withdrawal,
-    getHistory
+    getUser,
+    updateUser,
+    getUsers,
+    deleteUser
 
 
     

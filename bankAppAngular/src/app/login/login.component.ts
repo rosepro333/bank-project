@@ -12,6 +12,8 @@ import { Validators } from '@angular/forms';
 export class LoginComponent {
                     // username="";
                     // password="";
+    
+ test="hello";                   
 loginForm=this.fb.group({
 
   username:["" ,[Validators.required]],
@@ -68,29 +70,40 @@ login(){
               alert(username);
               alert(password);
 
-              const user = this.bankService.authenticateUser(username,password);
-              
-              if (user==1){
-            
+              const user = this.bankService.authenticateUser(username,password)
+              .subscribe((data:any)=>{
 
-                alert("login successfull")
+                alert(data.message);
+               // alert(data.token);
+               localStorage.setItem("token",data.token);
+               //let token=localStorage.getItem("token");
+                console.log(data);
                 this.router.navigateByUrl("/home");
-                //window.location.href="userhome.html"
+
+              },(err)=>{
+                alert(err.error.message);
+              })
+    //           if (user==1){
             
-                  }
-              else if(user==0){
+
+    //             alert("login successfull")
+    //             this.router.navigateByUrl("/home");
+    //             //window.location.href="userhome.html"
             
-              alert("password is incorrect")
+    //               }
+    //           else if(user==0){
+            
+    //           alert("password is incorrect")
               
 
-                }
-              else if(user==-1){
+    //                        }
+    //           else if(user==-1){
               
-                alert("no user exsist with provided username")
+    //             alert("no user exsist with provided username")
 
-              }
+    //           }
 
-            }
-    }
+      }
+  }
 
 }

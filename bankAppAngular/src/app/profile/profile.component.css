@@ -1,0 +1,9 @@
+.background-image{
+    background-image: url('/assets/bankimg.jpg');
+    background-repeat: no-repeat;
+
+    background-size:100% 100%;
+}
+.required{
+    color: red;
+}

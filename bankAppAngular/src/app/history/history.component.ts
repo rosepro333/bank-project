@@ -14,7 +14,14 @@ history:{amount:number,transactionType:string}[]  = []
   constructor(private bankService:BankService) 
   {
 
-     this.history=bankService.getHistory();
+    bankService.getHistory()
+    .subscribe((data:any)=>{
+
+      this.history=data;
+      //console.log(data)
+   
+    });
+
      
    }
 

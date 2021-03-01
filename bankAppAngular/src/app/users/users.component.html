@@ -1,0 +1,32 @@
+<div class=background-image>
+    <h1>LIST OF USERS</h1>
+    <table class="content-table">
+     <thead>
+        <tr>
+           
+            <th>accno</th>
+            
+            <th>bal</th>
+            <th>username</th>
+            <th>Edit</th>
+
+            
+        </tr>
+     </thead>
+     <tbody>
+        <tr *ngFor="let item of users">
+          
+            <td>{{item.accno}}</td>
+           
+            <td>{{item.bal}}</td>
+            <td>{{item.username}}</td>
+            <td><button (click)="edit(item)">Edit</button></td>
+
+           
+    
+        </tr>
+    </tbody>
+    </table>
+    
+    </div>
+    
