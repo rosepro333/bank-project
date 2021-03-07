@@ -174,20 +174,22 @@ const  Withdrawal=(_id,amt)=>{
   // }
    
 }
-//........................
+//.....update...................
 const updateUser=function(_id,data)
 {
   return User.findOneAndUpdate({_id},data);
 
 }
-//..........................
+//...LISTING OF USERS.......................
 
 const getUsers=function()
 {
   
   return User.find();
 }
-//delete...........
+
+//DELETE.........................................
+
 const deleteUser=function(_id){
  return User.deleteOne({
    _id

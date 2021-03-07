@@ -1,1 +1,52 @@
-<p>useredit works!</p>
+<body class=background-image>
+  
+   
+    <div class="container">
+      <!-- <div class="main"> -->
+           <div class="row">
+              <div class="col"></div>
+              <div class="col"><h1 style="margin-top: 8%;">UPDATE DETAILS</h1></div>
+              <div class="col"></div>
+           </div>
+           <!-- <input type="text" [(ngModel)]="test"> -->
+       <form [formGroup]="profileForm" style="margin-top: 8%;" >
+  <!-- .......................username ...................-->
+       <div class="mb-3">
+             <label for="exampleInputEmail1" style="color:white;" class="form-label">username <span class="required">*</span> </label>
+             <!-- <input (change)="onUsernameChange($event)" type="text" class="form-control" id="username" aria-describedby="emailHelp"> -->
+             <input  formControlName="username" type="text" name="username" class="form-control"  aria-describedby="emailHelp">
+             <label for="" *ngIf="profileForm.get('username')?.touched && profileForm.get('username')?.errors?.required" style="color: red;" id="uinvalid" class="form-text"> username is required</label>
+       </div>
+       <!-- ...................accno..................... -->
+       <div class="mb-3">
+            <label for="exampleInputPassword1"  style="color:white;" class="form-label">Account no<span class="required">*</span></label>
+            <!-- <input (change)="onPasswordChange($event)" type="password" class="form-control" id="password"> -->
+            <input formControlName="accountno"  type="text" name="accountno" class="form-control">
+            <label for="" *ngIf="profileForm.get('accountno')?.touched && profileForm.get('accountno')?.errors?.required" style="color: red;" id="acnoinvalid" class="form-text"> account number is required</label>
+
+            
+       </div>
+
+       <!-- ............balance............ -->
+       <div class="mb-3">
+           <label for="exampleInputEmail1" style="color:white;" class="form-label">Balance<span class="required">*</span> </label>
+           <!-- <input (change)="onUsernameChange($event)" type="text" class="form-control" id="username" aria-describedby="emailHelp"> -->
+           <input  formControlName="balance" type="text" name="balance" class="form-control"  aria-describedby="emailHelp">
+           <label for="" *ngIf="profileForm.get('balance')?.touched && profileForm.get('balance')?.errors?.required" style="color: red;" id="binvalid" class="form-text"> Balance is required</label>
+     </div>
+    
+        <button type="submit"  class="btn btn-primary">UPDATE</button>
+  
+     </form>
+  
+      <!-- </div> -->
+  
+   </div>
+  
+  
+   
+</body>
+    
+  
+
+

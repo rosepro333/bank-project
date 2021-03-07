@@ -53,11 +53,32 @@ router.get('/', function(req, res, next) {
      // res.render('index', { title: 'Express' });
 
      // });
-//............................................
+//..............SEARCHING   .....USING MONGODB OPERATORS.........................
 User.find({
-  bal:{
-    $gt:1000
-  }
+    username:{
+   $regex:/ta/    //......any place ta....
+    }
+  //......................................................................
+    // name:"sara",
+    // bal:10000   //......TWO CONDITIONS ..similar to AND....
+      
+  // username:{
+  //   $regex:/^ta/   //.........starts with ta
+  // }
+  // username:{
+  //   $regex:/dd$/   //.........ends  with dd
+  // }
+  //  bal:{
+  //    $gt:20000  //.........balance GREATER THAN 1000.....gt,gte,lt,lte
+  //    }
+      // $and[
+      //   {
+         
+      //   },       //multiple conditions in AND....&or,&and
+      //   {
+          
+      //   }
+      // ]
 })
 .then(users=>{
   res.send(users)
@@ -190,19 +211,33 @@ router.get('/profile',authMiddleWare, function(req, res) {
  });
 
  //id..........
- router.patch('users/:id', function(req, res) {
+ router.patch('/users/:id', function(req, res) {
    res.send(req.params.id );
       })
 
 //delete one user..............
-router.delete('users/:id', function(req, res) {
+router.delete('/users/:id', function(req, res) {
   bankService.deleteUser(req.params.id )
   .then(user=>{
-        res.send({message:"Profile  updated successfully"});
+        res.send({message:"Profile  deleted successfully"});
 
       });
      })
 
+  //..............get user profile.........
+
+  router.get('/users/:id',authMiddleWare, function(req, res) {
+    console.log(req.params.id)
+    bankService.getUser(req.params.id)
+           .then(user=>{
+             
+                res.send(
+                   user
+               );
+  
+              });
+     
+    });   
 
 
 

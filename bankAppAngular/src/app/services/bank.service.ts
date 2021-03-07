@@ -198,11 +198,17 @@ export class BankService {
     });
  
  }
- //edit page of one user
- getOneUser(){
+
+
+  getUserProfile=(userId:any)=>{
+   return this.http.get(apiUrl+"users/"+userId,{
+       headers:this.generateHeader()
+
+     });
+
 
  }
-
+ 
 
 
 

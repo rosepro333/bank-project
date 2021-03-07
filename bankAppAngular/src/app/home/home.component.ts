@@ -85,5 +85,10 @@ this.bankService.Withdrawal(amount)
 
 }
 
+//LOGOUT
+logout(){
+  localStorage.removeItem("token");
+  this.router.navigateByUrl("/");
+}
 
 }

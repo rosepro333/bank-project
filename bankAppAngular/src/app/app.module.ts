@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { UsereditComponent } from './useredit/useredit.component';
+import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnimationsComponent } from './animations/animations.component';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { UsereditComponent } from './useredit/useredit.component';
     HistoryComponent,
     ProfileComponent,
     UsersComponent,
-    UsereditComponent
+    UsereditComponent,
+    AnimationsComponent
     
   ],
   imports: [
@@ -30,7 +33,8 @@ import { UsereditComponent } from './useredit/useredit.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
