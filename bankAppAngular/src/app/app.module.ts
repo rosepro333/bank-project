@@ -14,6 +14,10 @@ import { UsersComponent } from './users/users.component';
 import { UsereditComponent } from './useredit/useredit.component';
 import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimationsComponent } from './animations/animations.component';
+import { ContentComponent } from './content/content.component';
+import {MatTableModule} from '@angular/material/table';
+import { TableComponent } from './table/table.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -25,7 +29,9 @@ import { AnimationsComponent } from './animations/animations.component';
     ProfileComponent,
     UsersComponent,
     UsereditComponent,
-    AnimationsComponent
+    AnimationsComponent,
+    ContentComponent,
+    TableComponent
     
   ],
   imports: [
@@ -34,7 +40,10 @@ import { AnimationsComponent } from './animations/animations.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatButtonModule
+    
 
   ],
   providers: [],

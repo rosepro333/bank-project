@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BankService } from '../services/bank.service';
 import { Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,9 @@ export class LoginComponent {
                     // username="";
                     // password="";
     
- test="hello";                   
+ test="hello";     
+ 
+
 loginForm=this.fb.group({
 
   username:["" ,[Validators.required]],
@@ -27,8 +30,31 @@ loginForm=this.fb.group({
  constructor(private router:Router ,private bankService:BankService,private fb:FormBuilder ){
 
   
-        }                    
+        }     
+ngOnChanages(){
 
+    }    
+ngOnInit() {
+
+   }                  
+ngDocheck(){
+
+}
+// ngAfterContentInit(){
+
+// }
+// ngAfterContentChecked(){
+
+// }
+ngAfterViewInit(){
+
+}
+ngAfterViewChecked(){
+
+}
+ngOnDestroy(){
+
+}
                 // onUsernameChange(event:any){
                 // //alert(event.target.value)
                 //   this.username=event.target.value;
